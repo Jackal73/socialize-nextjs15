@@ -16,7 +16,8 @@ export default function Page() {
           <div className="space-y-1 text-center">
             <h1 className="text-3xl font-bold">Sign up to S͛OͦCͨIͥAͣLiͥzeͤ</h1>
             <p className="text-muted-foreground">
-              A place where even <span className="italic">you</span> can find a
+              A place where even{" "}
+              <span className="font-semibold italic">you</span> can find a
               friend.
             </p>
           </div>
