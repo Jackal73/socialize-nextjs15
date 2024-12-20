@@ -15,7 +15,7 @@ export default function Page() {
         <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
           <h1 className="text-center text-3xl font-bold">
             Login to
-            <span className="text-indigo-600"> S͛OͦCͨIͥAͣLiͥzeͤ</span>
+            <span className="text-amber-600"> S͛OͦCͨIͥAͣLiͥzeͤ</span>
           </h1>
           <div className="space-y-5">
             <LoginForm />

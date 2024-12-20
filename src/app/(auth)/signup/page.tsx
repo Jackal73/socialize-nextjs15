@@ -15,7 +15,7 @@ export default function Page() {
         <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
           <div className="space-y-1 text-center">
             <h1 className="text-3xl font-bold">
-              Sign up to <span className="text-indigo-600">S͛OͦCͨIͥAͣLiͥzeͤ</span>
+              Sign up to <span className="text-amber-600">S͛OͦCͨIͥAͣLiͥzeͤ</span>
             </h1>
             <p className="text-muted-foreground">
               A place where even{" "}
