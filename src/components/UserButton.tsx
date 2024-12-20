@@ -19,6 +19,7 @@ import {
 } from "./ui/dropdown-menu";
 import UserAvatar from "./UserAvatar";
 import { useTheme } from "next-themes";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface UserButtonProps {
   className?: string;
@@ -29,13 +30,15 @@ export default function UserButton({ className }: UserButtonProps) {
 
   const { theme, setTheme } = useTheme();
 
+  const queryClient = useQueryClient();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         {/* <button className={cn("flex-none rounded-full", className)}> */}
         <button
           className={cn(
-            "flex-none rounded-full border-[3px] border-indigo-600",
+            "flex-none rounded-full border-[3px] border-amber-600",
             className,
           )}
         >
@@ -79,6 +82,7 @@ export default function UserButton({ className }: UserButtonProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
+            queryClient.clear();
             logout();
           }}
         >
