@@ -13,13 +13,14 @@ export default function PostEditor() {
   const { user } = useSession();
 
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit.configure({
         bold: false,
         italic: false,
       }),
       Placeholder.configure({
-        placeholder: "What's crack-a-lackin'?",
+        placeholder: "What's happening?",
       }),
     ],
   });
