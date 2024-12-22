@@ -14,7 +14,7 @@ export default function Home() {
         <PostEditor />
         <Tabs>
           <TabsList>
-            <TabsTrigger value="for-you">For you</TabsTrigger>
+            <TabsTrigger value="for-you">Public</TabsTrigger>
             <TabsTrigger value="following">Following</TabsTrigger>
           </TabsList>
           <TabsContent value="for-you">

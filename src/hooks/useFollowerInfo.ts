@@ -13,5 +13,6 @@ export default function useFollowerInfo(
     initialData: initialState,
     staleTime: Infinity,
   });
+
   return query;
 }
