@@ -43,7 +43,7 @@ export default function UserLinkWithTooltip({
     <UserTooltip user={data}>
       <Link
         href={`/users/${username}`}
-        className="text-primary hover:underline"
+        className="text-amber-600 hover:underline"
       >
         {children}
       </Link>
