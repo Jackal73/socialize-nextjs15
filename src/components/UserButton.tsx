@@ -38,7 +38,7 @@ export default function UserButton({ className }: UserButtonProps) {
         {/* <button className={cn("flex-none rounded-full", className)}> */}
         <button
           className={cn(
-            "flex-none rounded-full border-[3px] border-amber-600",
+            "flex-none rounded-full border-[1px] border-amber-600",
             className,
           )}
         >
