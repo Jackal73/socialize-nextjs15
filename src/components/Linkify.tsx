@@ -19,7 +19,7 @@ export default function Linkify({ children }: LinkifyProps) {
 
 function LinkifyUrl({ children }: LinkifyProps) {
   return (
-    <LinkItUrl className="text-amber-600 hover:underline">{children}</LinkItUrl>
+    <LinkItUrl className="text-amber-500 hover:underline">{children}</LinkItUrl>
   );
 }
 
