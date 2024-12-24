@@ -40,7 +40,6 @@ export async function GET(
       likes: post._count.likes,
       isLikedByUser: !!post.likes.length,
     };
-
     return Response.json(data);
   } catch (error) {
     console.error(error);

@@ -1,51 +1,45 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
-import { FollowerInfo } from "@/lib/types";
+import { LikeInfo } from "@/lib/types";
 
 export async function GET(
   req: Request,
-  { params: { userId } }: { params: { userId: string } },
+  { params: { postId } }: { params: { postId: string } },
 ) {
   try {
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
-      return Response.json(
-        {
-          error: "Unauthorized",
-        },
-        { status: 401 },
-      );
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
       select: {
-        followers: {
+        likes: {
           where: {
-            followerId: loggedInUser.id,
+            userId: loggedInUser.id,
           },
           select: {
-            followerId: true,
+            userId: true,
           },
         },
         _count: {
           select: {
-            followers: true,
+            likes: true,
           },
         },
       },
     });
 
-    if (!user) {
-      return Response.json({ error: "User not found" }, { status: 404 });
+    if (!post) {
+      return Response.json({ error: "Post not found" }, { status: 404 });
     }
 
-    const data: FollowerInfo = {
-      followers: user._count.followers,
-      isFollowedByUser: !!user.followers.length,
+    const data: LikeInfo = {
+      likes: post._count.likes,
+      isLikedByUser: !!post.likes.length,
     };
-
     return Response.json(data);
   } catch (error) {
     console.error(error);
@@ -55,30 +49,25 @@ export async function GET(
 
 export async function POST(
   req: Request,
-  { params: { userId } }: { params: { userId: string } },
+  { params: { postId } }: { params: { postId: string } },
 ) {
   try {
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
-      return Response.json(
-        {
-          error: "Unauthorized",
-        },
-        { status: 401 },
-      );
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    await prisma.follow.upsert({
+    await prisma.like.upsert({
       where: {
-        followerId_followingId: {
-          followerId: loggedInUser.id,
-          followingId: userId,
+        userId_postId: {
+          userId: loggedInUser.id,
+          postId,
         },
       },
       create: {
-        followerId: loggedInUser.id,
-        followingId: userId,
+        userId: loggedInUser.id,
+        postId,
       },
       update: {},
     });
@@ -92,7 +81,7 @@ export async function POST(
 
 export async function DELETE(
   req: Request,
-  { params: { userId } }: { params: { userId: string } },
+  { params: { postId } }: { params: { postId: string } },
 ) {
   try {
     const { user: loggedInUser } = await validateRequest();
@@ -101,10 +90,10 @@ export async function DELETE(
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    await prisma.follow.deleteMany({
+    await prisma.like.deleteMany({
       where: {
-        followerId: loggedInUser.id,
-        followingId: userId,
+        userId: loggedInUser.id,
+        postId,
       },
     });
 

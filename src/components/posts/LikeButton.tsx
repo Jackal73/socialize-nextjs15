@@ -1,14 +1,14 @@
+import kyInstance from "@/lib/ky";
 import { LikeInfo } from "@/lib/types";
-import { useToast } from "../ui/use-toast";
+import { cn } from "@/lib/utils";
 import {
   QueryKey,
   useMutation,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import kyInstance from "@/lib/ky";
 import { Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useToast } from "../ui/use-toast";
 
 interface LikeButtonProps {
   postId: string;
@@ -35,7 +35,6 @@ export default function LikeButton({ postId, initialState }: LikeButtonProps) {
       data.isLikedByUser
         ? kyInstance.delete(`/api/posts/${postId}/likes`)
         : kyInstance.post(`/api/posts/${postId}/likes`),
-
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey });
 
