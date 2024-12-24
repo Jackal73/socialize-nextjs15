@@ -1,12 +1,10 @@
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
-import DeletePostDialog from "@/components/posts/DeletePostDialog";
 import Post from "@/components/posts/Post";
 import PostsLoadingSkeleton from "@/components/posts/PostsLoadingSkeleton";
-import { Button } from "@/components/ui/button";
 import kyInstance from "@/lib/ky";
-import { PostData, PostsPage } from "@/lib/types";
+import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
@@ -24,7 +22,6 @@ export default function UserPosts({ userId }: UserPostsProps) {
     status,
   } = useInfiniteQuery({
     queryKey: ["post-feed", "user-posts", userId],
-    // queryFn: kyInstance.get("/api/posts/for-you").json<PostData[]>,
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
