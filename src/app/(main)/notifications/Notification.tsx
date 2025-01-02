@@ -2,7 +2,7 @@ import UserAvatar from "@/components/UserAvatar";
 import { NotificationData } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { NotificationType } from "@prisma/client";
-import { Heart, MessageCircle, User2 } from "lucide-react";
+import { Heart, MessageCircleMore, User2 } from "lucide-react";
 import Link from "next/link";
 
 interface NotificationProps {
@@ -16,12 +16,12 @@ export default function Notification({ notification }: NotificationProps) {
   > = {
     FOLLOW: {
       message: `${notification.issuer.displayName} followed you`,
-      icon: <User2 className="size-7 text-primary" />,
+      icon: <User2 className="size-7 text-amber-600" />,
       href: `/users/${notification.issuer.username}`,
     },
     COMMENT: {
       message: `${notification.issuer.displayName} commented on your post`,
-      icon: <MessageCircle className="size-7 fill-primary text-primary" />,
+      icon: <MessageCircleMore className="fill- size-7 text-amber-600" />,
       href: `/posts/${notification.postId}`,
     },
     LIKE: {
@@ -38,7 +38,7 @@ export default function Notification({ notification }: NotificationProps) {
       <article
         className={cn(
           "flex gap-3 rounded-2xl bg-card p-5 shadow-sm transition-colors hover:bg-card/70",
-          !notification.read && "bg-primary/10",
+          !notification.read && "bg-amber-600/60",
         )}
       >
         <div className="my-1">{icon}</div>
