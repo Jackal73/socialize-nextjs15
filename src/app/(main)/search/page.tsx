@@ -1,12 +1,17 @@
+import TrendsSidebar from "@/components/TrendsSidebar";
 import { Metadata } from "next";
+import SearchResults from "./SearchResults";
+
 interface PageProps {
   searchParams: { q: string };
 }
+
 export function generateMetadata({ searchParams: { q } }: PageProps): Metadata {
   return {
     title: `Search results for "${q}"`,
   };
 }
+
 export default function Page({ searchParams: { q } }: PageProps) {
   return (
     <main className="flex w-full min-w-0 gap-5">
@@ -16,7 +21,9 @@ export default function Page({ searchParams: { q } }: PageProps) {
             Search results for &quot;{q}&quot;
           </h1>
         </div>
+        <SearchResults query={q} />
       </div>
+      <TrendsSidebar />
     </main>
   );
 }
