@@ -15,7 +15,7 @@ interface PostMoreButtonProps {
   className?: string;
 }
 
-export default function postMoreButton({
+export default function PostMoreButton({
   post,
   className,
 }: PostMoreButtonProps) {
